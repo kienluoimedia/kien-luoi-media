@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>Kiến Lười Media|Chụp ảnh|Quay phim|Sự kiện|Sinh nhật|Phóng sự cưới|Couple</title>
+    <meta name="description" content="Kiến Lười Media. Chụp ảnh, quay phim, dựng highlight sự kiện, phóng sự cưới, sinh nhật, couple, chân dung, áo dài, kỷ yếu, lookbook, thời trang">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=1">
+	<meta property="og:title" content="Kiến Lười Media"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:url" content="https://kienluoimedia.com/"/>
+	<meta property="og:image" content="https://kienluoimedia.com/img/logo/FB-Cover-Photo-20230524.webp"/>
+	<meta property="og:description" content="Chụp ảnh, quay phim, dựng highlight sự kiện, phóng sự cưới, sinh nhật, couple, chân dung, áo dài, kỷ yếu, lookbook, thời trang"/>
+	
+    <link rel="icon" type="image/png" href="./img/logo/Kien-Luoi-Media-Logo.png">
+    <link rel="stylesheet" href="w3.css">
+	<link rel="preload" as="image" href="./img/logo/FB-Cover-Photo-202305.webp" type="image/webp">
+	<!--
+	<link rel="preload" as="image" href="./img/photobook/20221203-Tran-Hoang-Anh_1-W.webp" type="image/webp">
+	<link rel="preload" as="image" href="./img/photobook/20231220-Wedding-Thao-Anh_2-W.webp" type="image/webp">
+	<link rel="preload" as="image" href="./img/photobook/Photobook-20220923-Birthday-Hoa-Ai-Nhi.webp" type="image/webp">
+	<link rel="preload" as="image" href="./img/photobook/Photobook-KyYeu-20221203.webp" type="image/webp">
+	<link rel="preload" as="image" href="./img/photobook/20231220-Wedding-Thao-Anh_6-W.webp" type="image/webp">
+	<link rel="preload" as="image" href="./img/photobook/Photobook-AoDai-20210110.webp" type="image/webp">
+	-->
+	
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="jquery-3.6.3.min.js"></script>
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #f1f1f1;
+        padding: 20px;
+        font-family: Arial;
+    }
+
+    /* Center website */
+    .main {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    h1 {
+        font-size: 50px;
+        word-break: break-all;
+    }
+
+    .row {
+        margin: 10px -16px;
+    }
+
+    /* Add padding BETWEEN each column */
+    .row,
+    .row>.column {
+        padding: 8px;
+    }
+
+    /* Create three equal columns that floats next to each other */
+    .column {
+        /*float: left;*/
+        /*width: 33.33%;*/
+        display: none;
+        /* Hide all elements by default */
+    }
+
+    /* Clear floats after rows */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Content */
+    .content {
+        background-color: white;
+        padding: 10px;
+    }
+
+    /* The "show" class is added to the filtered elements */
+    .show {
+        display: block;
+    }
+
+    /* Style the buttons */
+    .btn {
+        border: none;
+        outline: none;
+        padding: 12px 16px;
+        background-color: white;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #ddd;
+    }
+
+    .btn.active {
+        background-color: #E40578;
+        color: white;
+    }
+
+    @media only screen and (orientation:portrait)
+
+    /* and (max-aspect-ratio: 13/9) */
+        {
+        .fixed-button-left {
+            position: fixed;
+            right: 0px;
+            top: 55%;
+            width: 60px;
+        }
+    }
+
+    @media only screen and (orientation:landscape)
+
+    /* and (min-aspect-ratio: 13/9) */
+        {
+        .fixed-button-left {
+            position: fixed;
+            right: 0px;
+            top: 35%;
+            width: 60px;
+        }
+    }
+
+    .fixed-button-left br {
+        display: none;
+    }
+
+    .fixed-button-left a {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background: rgb(228, 5, 120);
+        text-align: center;
+        line-height: 50px;
+        margin-bottom: 3px;
+        opacity: 0.8;
+        border-radius: 30px;
+    }
+
+    .fixed-button-left a:nth-child(1) {
+        background: rgb(228, 5, 120);
+    }
+
+    .fixed-button-left a:nth-child(2) {
+        background: rgb(228, 5, 120);
+    }
+
+    .fixed-button-left a:nth-child(3) {
+        background: rgb(228, 5, 120);
+    }
+
+    .fixed-button-left a:nth-child(4) {
+        background: rgb(228, 5, 120);
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 69;
+        padding-top: 5%;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: black;
+    }
+
+    /* Modal Content */
+    @media only screen and (orientation:portrait) and (max-aspect-ratio: 13/9) {
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            width: 90%;
+            height: auto;
+            max-width: 1200px;
+        }
+    }
+
+    @media only screen and (orientation:landscape) and (min-aspect-ratio: 13/9) {
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            width: 55%;
+            height: auto;
+            max-width: 1200px;
+        }
+    }
+
+    /* The Close Button */
+    .close {
+        color: rgb(228, 5, 120);
+        background-color: rgba(105, 105, 105, .2);
+        position: absolute;
+        text-align: center;
+        bottom: 1.6%;
+        left: 2.5%;
+        right: 2.5%;
+        font-size: 5vh;
+        font-weight: bold;
+        z-index: 99;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #999;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Hide the slides by default */
+    .mySlides {
+        display: none;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    .mySlides img {
+        max-width: 100vh;
+        max-height: 80vh;
+        object-fit: contain;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -50px;
+        color: rgb(228, 5, 120);
+        font-weight: bold;
+        font-size: 24px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        -webkit-user-select: none;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover,
+    .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: rgb(228, 5, 120);
+        font-size: 16px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Caption text */
+    .caption-container {
+        text-align: center;
+        background-color: black;
+        padding: 2px 16px;
+        color: white;
+    }
+
+    img.demo {
+        opacity: 0.6;
+    }
+
+    .active,
+    .demo:hover {
+        opacity: 1;
+    }
+
+    img.hover-shadow {
+        transition: 0.3s;
+    }
+
+    .hover-shadow:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    img.avatar {
+        max-width: 100%;
+        max-height: 255px;
+        object-fit: contain;
+        margin: auto;
+        display: block;
+    }
+
+    iframe.youtube {
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+
+    /* Nav Bar - Begin */
+    .navbar {
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        /* Set the navbar to fixed position */
+        top: 0;
+        /* Position the navbar at the bottom of the page */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        z-index: 50;
+        text-align: center;
+
+        /* Vertical center
+        top: 50%;
+        transform: translateY(-50%);
+        */
+
+        /* Both horizontal and vertical center
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        */
+    }
+
+    .navbar a {
+        /*
+        float: left;
+        display: block;
+        */
+        display: inline-block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .navbar a.navbar-active {
+        background-color: rgb(228, 5, 120);
+        color: white;
+    }
+
+    .navbar .navbar-icon {
+        display: none;
+        background-color: rgb(228, 5, 120);
+        color: white;
+		font-weight: bold;
+    }
+
+    @media screen and (max-width: 600px) {
+        .navbar a:nth-child(n+3) {
+            display: none;
+        }
+
+        .navbar a.navbar-icon {
+            float: right;
+            display: block;
+            background-color: rgb(228, 5, 120);
+            color: white;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .navbar.responsive .navbar-icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: rgb(228, 5, 120);
+            color: white;
+        }
+
+        .navbar.responsive a {
+            float: none;
+            display: block;
+            text-align: left;
+        }
+    }
+
+    /* Nav Bar - End */
+    </style>
+    <!-- Meta Pixel Code -->
+    <script>
+    ! function(f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function() {
+            n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '949061336266577');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=949061336266577&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZM32CDLZGM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+
+function gtag() { dataLayer.push(arguments); }
+gtag('js', new Date());
+
+gtag('config', 'G-ZM32CDLZGM');
+</script>
+
+<body>
+    <!-- MAIN (Center website) -->
+    <div class="main">
+        <div class="navbar" id="myNavBar">
+            <a href="#all" class="navbar-btn navbar-active" onclick="filterSelectionNavBar('all')">Tất cả</a>
+            <a href="#wedding" class="navbar-btn" onclick="filterSelectionNavBar('wedding')">Phóng sự cưới</a>
+            <a href="#birthday" class="navbar-btn" onclick="filterSelectionNavBar('birthday')">Sinh nhật</a>
+            <a href="#event" class="navbar-btn" onclick="filterSelectionNavBar('event')">Sự kiện</a>
+            <a href="#highlight" class="navbar-btn" onclick="filterSelectionNavBar('highlight')">Quay phim</a>
+            <a href="#ky-yeu" class="navbar-btn" onclick="filterSelectionNavBar('ky-yeu')">Kỷ yếu</a>
+            <a href="#couple" class="navbar-btn" onclick="filterSelectionNavBar('couple')">Couple</a>
+            <a href="#ao-dai" class="navbar-btn" onclick="filterSelectionNavBar('ao-dai')">Áo dài</a>
+            <a href="javascript:void(0);" id="myNavBarIcon" class="navbar-icon" onclick="onNavBarIconClick()">
+                &#9776;
+            </a>
+        </div>
+        <header id="portfolio">
+            <div class="w3-container">
+                <img src="./img/logo/FB-Cover-Photo-202305.webp" alt="Kiến Lười Media" style="width:100%; height: auto; display: inline; margin-top: 40px;" loading="lazy">
+                <!--
+                <div class="w3-section w3-bottombar w3-padding-16" id="myBtnContainer">
+                    
+                    <span class="w3-margin-right">Bộ lọc tìm kiếm:</span>
+                    <button class="btn active" onclick="filterSelection('all')">Tất cả</button>
+                    <button class="btn" onclick="filterSelection('wedding')">Phóng sự cưới</button>
+                    <button class="btn" onclick="filterSelection('birthday')">Sinh nhật</button>
+                    <button class="btn" onclick="filterSelection('event')">Sự kiện</button>
+                    <button class="btn" onclick="filterSelection('highlight')">Quay phim</button>
+                    <button class="btn" onclick="filterSelection('ky-yeu')">Kỷ yếu</button>
+                    <button class="btn" onclick="filterSelection('couple')">Couple</button>
+                    <button class="btn" onclick="filterSelection('ao-dai')">Áo dài</button>
+                </div>
+                -->
+                <div class="w3-bottombar w3-padding" id="myBtnContainer">
+                </div>
+            </div>
+        </header>
+        <!-- Portfolio Gallery Grid - Begin -->
+        <div class="w3-row-padding">
+            <div class="column event" onclick="openModal('Event');currentSlide('Event', 1)">
+                <div class="w3-half w3-container w3-margin-bottom">
+                    <div class="w3-container w3-white">
+						<img src="./img/photobook/20221203-Tran-Hoang-Anh_1-W.webp" alt="Event" class="avatar w3-hover-opacity" loading="lazy">
+						<p><b>Chụp ảnh Sự kiện</b></p>
+                        <p>- Chi phí trọn gói: Từ 1.000.000 VNĐ</p>
+                        <p>- Trả ảnh đã cân sáng, chỉnh màu, làm mịn da, v.v...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column wedding" onclick="openModal('Wedding');currentSlide('Wedding', 1)">
+                <div class="w3-half w3-container w3-margin-bottom">
+                    <div class="w3-container w3-white">
+                        <img src="./img/photobook/20231220-Wedding-Thao-Anh_2-W.webp" alt="Wedding" class="avatar w3-hover-opacity" loading="lazy">
+                        <p><b>Chụp ảnh Cưới hỏi - Phóng sự cưới</b></p>
+                        <p>- Chi phí trọn gói: Từ 1.200.000 VNĐ</p>
+                        <p>- Trả ảnh đã cân sáng, chỉnh màu, làm mịn da, v.v...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="column birthday" onclick="openModal('Birthday');currentSlide('Birthday', 1)">
+                <div class="w3-half w3-container w3-margin-bottom">
+                    <div class="w3-container w3-white">
+                        <img src="./img/photobook/Photobook-20220923-Birthday-Hoa-Ai-Nhi.webp" alt="Birthday" class="avatar w3-hover-opacity" loading="lazy">
+                        <p><b>Chụp ảnh Sinh nhật</b></p>
+                        <p>- Chi phí trọn gói: Từ 600.000 VNĐ</p>
+                        <p>- Trả ảnh đã cân sáng, chỉnh màu, làm mịn da, v.v...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column ky-yeu" onclick="openModal('KyYeu');currentSlide('KyYeu', 1)">
+                <div class="w3-half w3-container w3-margin-bottom">
+                    <div class="w3-container w3-white">
+                        <img src="./img/photobook/Photobook-KyYeu-20221203.webp" alt="Kỷ yếu - Lễ tốt nghiệp" class="avatar w3-hover-opacity" loading="lazy">
+                        <p><b>Chụp ảnh Kỷ yếu - Lễ tốt nghiệp</b></p>
+                        <p>- Chi phí chụp đơn: 500.000 VNĐ/2 giờ đồng hồ</p>
+                        <p>- Trả ảnh đã cân sáng, chỉnh màu, làm mịn da, v.v...</p>
+						<p>- Chi phí chụp nhóm/tập thể: vui lòng liên hệ để nhận báo giá trực tiếp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="column couple" onclick="openModal('Couple');currentSlide('Couple', 1)">
+                <div class="w3-half w3-container w3-margin-bottom">
+                    <div class="w3-container w3-white">
+                        <img src="./img/photobook/20231220-Wedding-Thao-Anh_6-W.webp" alt="Couple" class="avatar w3-hover-opacity" loading="lazy">
+                        <p><b>Chụp ảnh Couple - Cặp đôi</b></p>
+                        <p>- Chi phí trọn gói (đã bao gồm makeup): Từ 800.000 VNĐ</p>
+						<p>- Trả ảnh đã cân sáng, chỉnh màu, làm mịn da, v.v...</p>
+                        <p>- Hậu kỳ chỉnh sửa chuyên nghiệp: 30.000 VNĐ/1 ảnh/tối đa 2 lần sửa</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column ao-dai" onclick="openModal('AoDai');currentSlide('AoDai', 1)">
+                <div class="w3-half w3-container w3-margin-bottom">
+                    <div class="w3-container w3-white">
+                        <img src="./img/photobook/Photobook-AoDai-20210110.webp" alt="Áo dài" class="avatar w3-hover-opacity" loading="lazy">
+                        <p><b>Chụp ảnh Áo dài</b></p>
+                        <p>- Chụp trả ảnh jpeg (đã bao gồm makeup): Từ 600.000 VNĐ</p>
+						<p>- Trả ảnh đã cân sáng, chỉnh màu, làm mịn da, v.v...</p>
+                        <p>- Hậu kỳ chỉnh sửa chuyên nghiệp: 30.000 VNĐ/1 ảnh/tối đa 2 lần sửa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Gallery Grid - End -->
+        <!-- Video Gallery Grid - Begin -->
+        <div class="w3-row-padding">
+            <div class="column highlight">
+                <div class="w3-half w3-container w3-margin-bottom">
+                    <div class="w3-container w3-white">
+                        <iframe loading="lazy" class="youtube" src="https://www.youtube.com/embed/QXJYWG49zeo?start=4&enablejsapi=1" title="Highlight DNF Group Birthday" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <p><b>Quay phim Sự kiện</b></p>
+                        <p>- 1 slot quay Highlight/Full: Từ 1.500.000 VNĐ</p>
+                        <p>- Bổ sung Flycam: + Từ 500.000 VNĐ</p>
+                        <p>- Dựng video Highlight/Full: Từ 1.000.000 VNĐ</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column highlight">
+                <div class="w3-half w3-container w3-margin-bottom">
+                    <div class="w3-container w3-white">
+                        <iframe loading="lazy" class="youtube" src="https://www.youtube.com/embed/HlpxRB98qdE?enablejsapi=1" title="Highlight Nahita Lễ khai trương" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <p><b>Quay phim Sự kiện</b></p>
+                        <p>- 1 slot quay Highlight/Full: Từ 1.500.000 VNĐ</p>
+                        <p>- Bổ sung Flycam: + Từ 500.000 VNĐ</p>
+                        <p>- Dựng video Highlight/Full: Từ 1.000.000 VNĐ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!--
+		<div class="w3-row-padding">
+            <div class="column highlight">
+                <div class="w3-half w3-container w3-margin-bottom">
+                    <div class="w3-container w3-white">
+                        <iframe loading="lazy" class="youtube" src="https://www.youtube.com/embed/_IUFhzj5wq4?start=26&enablejsapi=1" title="Highlight EPLAY Lễ hội mùa xuân 2023" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <p><b>Quay phim Sự kiện</b></p>
+                        <p>- 1 slot quay Highlight/Full: Từ 1.500.000 VNĐ</p>
+                        <p>- Bổ sung Flycam: + Từ 500.000 VNĐ</p>
+                        <p>- Dựng video Highlight/Full: Từ 1.000.000 VNĐ</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column highlight">
+                <div class="w3-half w3-container w3-margin-bottom">
+                    <div class="w3-container w3-white">
+                        <iframe loading="lazy" class="youtube" src="https://www.youtube.com/embed/_epzoOuqB1M?start=1&enablejsapi=1" title="Highlight BrainSTEM English Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <p><b>Quay phim Sự kiện</b></p>
+                        <p>- 1 slot quay Highlight/Full: Từ 1.500.000 VNĐ</p>
+                        <p>- Bổ sung Flycam: + Từ 500.000 VNĐ</p>
+                        <p>- Dựng video Highlight/Full: Từ 1.000.000 VNĐ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="column highlight">
+                <div class="w3-half w3-container w3-margin-bottom">
+                    <div class="w3-container w3-white">
+                        <iframe loading="lazy" class="youtube" src="https://www.youtube.com/embed/3LK0WerWiI8?start=26&enablejsapi=1" title="Highlight Hateco Lễ khai giảng" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <p><b>Quay phim Sự kiện</b></p>
+                        <p>- 1 slot quay Highlight/Full: Từ 1.500.000 VNĐ</p>
+                        <p>- Bổ sung Flycam: + Từ 500.000 VNĐ</p>
+                        <p>- Dựng video Highlight/Full: Từ 1.000.000 VNĐ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+		-->
+        <!-- Video Gallery Grid - End -->
+    </div>
+    <!-- END MAIN -->
+    <div class="fixed-button-left">
+        <a href="tel:0984326869"><img src="./img/contact/contact-call.png" alt="" width="28" height="28"></a><br>
+        <a href="https://zalo.me/0984326869" target="_blank" rel="noopener noreferrer"><img src="./img/contact/contact-zalo.png" alt="" width="42" height=="42"></a><br>
+        <a href="https://m.me/PatrickTungNguyen/" target="_blank" rel="noopener noreferrer"><img src="./img/contact/contact-messenger.png" alt="" width="28" height="28"></a><br>
+        <a href="mailto:kienluoimedia@gmail.com"><img src="./img/contact/contact-mail.png" alt=""></a>
+    </div>
+    <!-- The Modal/Lightbox -->
+    <div id="myModalEvent" class="modal">
+        <!--<span class="close cursor" onclick="closeModal('Event')">&times;</span>-->
+        <span class="close cursor" onclick="closeModal('Event')">Đóng cửa sổ</span>
+        <div class="modal-content">
+            <div class="mySlides mySlideEvent">
+                <div class="numbertext">1 / 3</div>
+                <img src="./img/photobook/20221203-Tran-Hoang-Anh_1-W.webp" style="width:100%;" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideEvent">
+                <div class="numbertext">2 / 3</div>
+                <img src="./img/photobook/Photobook-Event-20221203-Nahita.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideEvent">
+                <div class="numbertext">3 / 3</div>
+                <img src="./img/photobook/Photobook-Event-20221006-TVSI.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides('Event', -1)">&#10094;</a>
+            <a class="next" onclick="plusSlides('Event', 1)">&#10095;</a>
+        </div>
+    </div>
+    <div id="myModalBirthday" class="modal">
+        <span class="close cursor" onclick="closeModal('Birthday')">Đóng cửa sổ</span>
+        <div class="modal-content">
+            <div class="mySlides mySlideBirthday">
+                <div class="numbertext">1 / 4</div>
+                <img src="./img/photobook/Photobook-20220923-Birthday-Hoa-Ai-Nhi.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+			<div class="mySlides mySlideBirthday">
+                <div class="numbertext">2 / 4</div>
+                <img src="./img/photobook/Photobook-20221204-Birthday-Thu-Tra.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideBirthday">
+                <div class="numbertext">3 / 4</div>
+                <img src="./img/photobook/Photobook-20221218-Birthday-Ben.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideBirthday">
+                <div class="numbertext">4 / 4</div>
+                <img src="./img/photobook/Photobook-20221113-Birthday-Minh-Chau.webp" style="width:100%;" alt="" loading="lazy">
+            </div>
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides('Birthday', -1)">&#10094;</a>
+            <a class="next" onclick="plusSlides('Birthday', 1)">&#10095;</a>
+        </div>
+    </div>
+    <div id="myModalWedding" class="modal">
+        <span class="close cursor" onclick="closeModal('Wedding')">Đóng cửa sổ</span>
+        <div class="modal-content">
+			<div class="mySlides mySlideWedding">
+                <div class="numbertext">1 / 5</div>
+                <img src="./img/photobook/20231220-Wedding-Thao-Anh_2-W.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+			<div class="mySlides mySlideWedding">
+                <div class="numbertext">2 / 5</div>
+                <img src="./img/photobook/20231220-Wedding-Thao-Anh_3-W.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideWedding">
+                <div class="numbertext">3 / 5</div>
+                <img src="./img/photobook/Photobook-Wedding-20230206.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideWedding">
+                <div class="numbertext">4 / 5</div>
+                <img src="./img/photobook/Photobook-Wedding-20230218.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideWedding">
+                <div class="numbertext">5 / 5</div>
+                <img src="./img/photobook/Photobook-Wedding-20221211-ChungDQ.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides('Wedding', -1)">&#10094;</a>
+            <a class="next" onclick="plusSlides('Wedding', 1)">&#10095;</a>
+        </div>
+    </div>
+    <div id="myModalCouple" class="modal">
+        <span class="close cursor" onclick="closeModal('Couple')">Đóng cửa sổ</span>
+        <div class="modal-content">
+			<div class="mySlides mySlideCouple">
+                <div class="numbertext">1 / 6</div>
+                <img src="./img/photobook/20231220-Wedding-Thao-Anh_6-W.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+			<div class="mySlides mySlideCouple">
+                <div class="numbertext">2 / 6</div>
+                <img src="./img/photobook/20231220-Wedding-Thao-Anh_7-W.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideCouple">
+                <div class="numbertext">3 / 6</div>
+                <img src="./img/photobook/Photobook-Couple-20220912.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideCouple">
+                <div class="numbertext">4 / 6</div>
+                <img src="./img/photobook/Photobook-Couple-20220611-Thang-Diep.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideCouple">
+                <div class="numbertext">5 / 6</div>
+                <img src="./img/photobook/Photobook-Couple-20220618.webp" style="width:100%;" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideCouple">
+                <div class="numbertext">6 / 6</div>
+                <img src="./img/photobook/Photobook-Couple-20221015.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideCouple">
+                <div class="numbertext">6 / 6</div>
+                <img src="./img/photobook/Photobook-Couple-20220708.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides('Couple', -1)">&#10094;</a>
+            <a class="next" onclick="plusSlides('Couple', 1)">&#10095;</a>
+        </div>
+    </div>
+    <div id="myModalKyYeu" class="modal">
+        <span class="close cursor" onclick="closeModal('KyYeu')">Đóng cửa sổ</span>
+        <div class="modal-content">
+            <div class="mySlides mySlideKyYeu">
+                <div class="numbertext">1 / 4</div>
+                <img src="./img/photobook/Photobook-KyYeu-20221203.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideKyYeu">
+                <div class="numbertext">2 / 4</div>
+                <img src="./img/photobook/Photobook-KyYeu-DHCN.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideKyYeu">
+                <div class="numbertext">4 / 4</div>
+                <img src="./img/photobook/Photobook-KyYeu-20220731.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideKyYeu">
+                <div class="numbertext">4 / 4</div>
+                <img src="./img/photobook/Photobook-KyYeu-20220816.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides('KyYeu', -1)">&#10094;</a>
+            <a class="next" onclick="plusSlides('KyYeu', 1)">&#10095;</a>
+        </div>
+    </div>
+    <div id="myModalAoDai" class="modal">
+        <span class="close cursor" onclick="closeModal('AoDai')">Đóng cửa sổ</span>
+        <div class="modal-content">
+            <div class="mySlides mySlideAoDai">
+                <div class="numbertext">1 / 6</div>
+                <img src="./img/photobook/Photobook-AoDai-20210110.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideAoDai">
+                <div class="numbertext">2 / 6</div>
+                <img src="./img/photobook/Photobook-AoDai-20221010.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideAoDai">
+                <div class="numbertext">3 / 6</div>
+                <img src="./img/photobook/Photobook-AoDai-20230101-01.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideAoDai">
+                <div class="numbertext">4 / 6</div>
+                <img src="./img/photobook/Photobook-AoDai-20230101-02.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideAoDai">
+                <div class="numbertext">5 / 6</div>
+                <img src="./img/photobook/Photobook-AoDai-20210206.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <div class="mySlides mySlideAoDai">
+                <div class="numbertext">6 / 6</div>
+                <img src="./img/photobook/Photobook-AoDai-20210421.webp" style="width:100%" alt="" loading="lazy">
+            </div>
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides('AoDai', -1)">&#10094;</a>
+            <a class="next" onclick="plusSlides('AoDai', 1)">&#10095;</a>
+        </div>
+    </div>
+    <script>
+    /* filterSelection("all") */
+    filterSelectionNavBar("all")
+
+    function filterSelection(c) {
+        var x, i;
+        x = document.getElementsByClassName("column");
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+            w3RemoveClass(x[i], "show");
+            if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+        }
+    }
+
+    function filterSelectionNavBar(c) {
+        var x, i;
+        x = document.getElementsByClassName("column");
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+            w3RemoveClass(x[i], "show");
+            if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+        }
+    }
+
+    function w3AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
+        }
+    }
+
+    function w3RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            while (arr1.indexOf(arr2[i]) > -1) {
+                arr1.splice(arr1.indexOf(arr2[i]), 1);
+            }
+        }
+        element.className = arr1.join(" ");
+    }
+
+    // Add active class to the current button (highlight it)
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function() {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+
+    var navBar = document.getElementById("myNavBar");
+    var navBarButtons = navBar.getElementsByClassName("navbar-btn");
+    for (var i = 0; i < navBarButtons.length; i++) {
+        navBarButtons[i].addEventListener("click", function() {
+            var current = document.getElementsByClassName("navbar-active");
+            current[0].className = current[0].className.replace(" navbar-active", "");
+            this.className += " navbar-active";
+
+            minimizeNavBar();
+        });
+    }
+
+    // Open the Modal
+    function openModal(id) {
+        document.getElementById("myModal" + id).style.display = "block";
+        mySlideId = id;
+    }
+
+    // Close the Modal
+    function closeModal(id) {
+        document.getElementById("myModal" + id).style.display = "none";
+        mySlideId = "";
+    }
+
+    // Close all Modal
+    function closeAllModal() {
+        var x, i;
+        x = document.getElementsByClassName("modal");
+
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+    }
+
+    $('.modal').on('touchstart', function(event) {
+        const xClick = event.originalEvent.touches[0].pageX;
+
+        $(this).on('touchmove', function(event) {
+            const xMove = event.originalEvent.touches[0].pageX;
+            const sensitivityInPx = 5;
+
+            if (Math.floor(xClick - xMove) > sensitivityInPx) {
+                plusSlides(mySlideId, 1);
+                $(this).off('touchmove');
+            } else if (Math.floor(xClick - xMove) < -sensitivityInPx) {
+                plusSlides(mySlideId, -1);
+                $(this).off('touchmove');
+            }
+        });
+    });
+
+    var slideIndex = 1;
+    var mySlideId = "";
+    //showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(id, n) {
+        showSlides(id, slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(id, n) {
+        showSlides(id, slideIndex = n);
+    }
+
+    function showSlides(id, n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlide" + id);
+
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+    }
+
+    var players = [];
+
+    function onYouTubeIframeAPIReady() {
+
+        var predefined_players = document.getElementsByTagName('iframe');
+
+        for (var i = 0; i < predefined_players.length; i++) {
+            predefined_players[i].id = "player" + i;
+            players[i] = new YT.Player("player" + i, {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+    }
+
+    function onPlayerReady() {
+        // players[1].playVideo();
+    }
+
+    function onPlayerStateChange(event) {
+        console.log(event);
+        var link = event.target.id;
+        var newstate = event.data;
+        if (newstate == YT.PlayerState.PLAYING) {
+            players.forEach(function(item, i) {
+                console.log(item);
+                if (item.id != link) item.pauseVideo();
+            });
+        }
+    }
+    </script>
+    <script>
+    function onNavBarIconClick() {
+        var x = document.getElementById("myNavBar");
+		var y = document.getElementById("myNavBarIcon");
+        if (x.className === "navbar") {
+            x.className += " responsive";
+			y.innerHTML = "&#9747;";
+        } else {
+            x.className = "navbar";
+			y.innerHTML = "&#9776;";
+        }
+    }
+
+    function minimizeNavBar() {
+        var x = document.getElementById("myNavBar");
+		var y = document.getElementById("myNavBarIcon");
+        if (x.className === "navbar") {
+            //x.className += " responsive";
+        } else {
+            x.className = "navbar";
+			y.innerHTML = "&#9776;";
+        }
+    }
+    </script>
+</body>
+
+</html>
